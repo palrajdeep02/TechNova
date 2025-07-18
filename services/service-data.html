@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data Analytics | Technova</title>
+  <title>Data Analytics | TechNova</title>
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body class="light">
   <header class="navbar">
@@ -12,12 +13,11 @@
     <ul class="nav-links">
       <li><a href="../index.html">Home</a></li>
       <li class="dropdown">
-        <a href="#">Services ▾</a>
+        <a href="../services.html">Services ▾</a>
         <ul class="dropdown-menu">
           <li><a href="service-it.html">IT Consulting</a></li>
           <li><a href="service-software.html">Software Development</a></li>
-          <li><a href="service-data.html">Data Analytics</a></li>
-          <li><a href="service-dbms.html">DBMS</a></li>
+          <li><a href="service-data.html" class="active">Data Analytics</a></li> <li><a href="service-dbms.html">DBMS</a></li>
           <li><a href="service-cyber.html">Cyber Security</a></li>
           <li><a href="service-digital.html">Digital Marketing</a></li>
           <li><a href="service-web.html">Website Designing</a></li>
@@ -31,24 +31,162 @@
     <button id="theme-toggle">🌓</button>
   </header>
 
-  <section class="service-page">
-    <div class="service-details">
-      <h1>Data Analytics</h1>
-      <p>Explore our comprehensive solutions in data analytics tailored to your business needs.</p>
-      <h2>Key Offerings</h2>
-      <ul>
-        <li>Consultation and strategic planning</li>
-        <li>Implementation of tailored solutions</li>
-        <li>Ongoing support and optimization</li>
-      </ul>
-      <div class="cta-box">
-        <a class="btn" href="../contact.html">Get Started</a>
+  <main class="service-page-content">
+    <section class="service-hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <h1>Unlock Insights: Transform Data into Actionable Intelligence</h1>
+          <p class="text-large">
+            Harness the power of your data with TechNova's comprehensive data analytics solutions. We turn complex data into clear, actionable insights to drive smarter business decisions.
+          </p>
+          <a class="btn btn-primary" href="../contact.html">Get Data-Driven</a>
+        </div>
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1551288259-f8164b38d721?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Data Analytics Dashboard" />
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <section class="service-why-choose-us-section bg-secondary-section">
+        <div class="container feature-content-wrapper reverse-order">
+            <div class="feature-text">
+                <h2>Why TechNova for Your Data Analytics Needs?</h2>
+                <p class="text-large">
+                    Our expert data scientists and analysts provide clarity from chaos, empowering you to make informed decisions that impact your bottom line.
+                </p>
+                <ul>
+                    <li><strong>Actionable Insights:</strong> We go beyond dashboards to provide clear, strategic recommendations.</li>
+                    <li><strong>Customized Solutions:</strong> Tailored analytics frameworks that fit your unique business objectives.</li>
+                    <li><strong>Advanced Methodologies:</strong> Leveraging AI, ML, and statistical modeling for predictive power.</li>
+                    <li><strong>Data Security & Governance:</strong> Ensuring your data is handled with the highest standards of privacy and quality.</li>
+                </ul>
+                <a href="../about.html" class="btn btn-secondary">Meet Our Data Experts</a>
+            </div>
+            <div class="feature-image">
+                <img src="https://images.unsplash.com/photo-1543286386-b174a7b0559a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Data Science Collaboration" />
+            </div>
+        </div>
+    </section>
+
+    <section class="service-feature-section">
+      <div class="container">
+        <h2 class="text-center">The Indispensable Role of Data Analytics in Business</h2>
+        <p class="text-center text-large mb-xxl">
+          In today's competitive landscape, data is your most valuable asset. Analytics transforms it into a strategic advantage.
+        </p>
+
+        <div class="feature-card-grid">
+          <div class="feature-card">
+            <i class="fas fa-eye icon-large primary-color"></i>
+            <h3>Deeper Customer Understanding</h3>
+            <p>Gain profound insights into customer behavior, preferences, and trends to personalize experiences.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-chart-bar icon-large primary-color"></i>
+            <h3>Optimized Performance</h3>
+            <p>Identify inefficiencies, pinpoint growth opportunities, and optimize operations across all departments.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-shield-alt icon-large primary-color"></i>
+            <h3>Risk Mitigation</h3>
+            <p>Proactively identify potential risks, fraud, and anomalies before they impact your business.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-rocket icon-large primary-color"></i>
+            <h3>Strategic Decision Making</h3>
+            <p>Base your strategies on concrete evidence, not guesswork, leading to more successful outcomes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-offerings-section bg-secondary-section">
+      <div class="container">
+        <h2 class="text-center">Our Comprehensive Data Analytics Services</h2>
+        <p class="text-center text-large mb-xxl">
+          TechNova offers a full spectrum of data analytics services to drive your business forward.
+        </p>
+
+        <div class="offerings-grid">
+          <div class="offering-item">
+            <div class="offering-icon-wrapper">
+                <i class="fas fa-sitemap offering-icon"></i>
+            </div>
+            <h3>Data Strategy & Consulting</h3>
+            <p>Developing a robust data strategy aligned with your business goals and technological landscape.</p>
+          </div>
+          <div class="offering-item">
+            <div class="offering-icon-wrapper">
+                <i class="fas fa-database offering-icon"></i>
+            </div>
+            <h3>Data Warehousing & ETL</h3>
+            <p>Designing, implementing, and managing data warehouses and efficient Extract, Transform, Load processes.</p>
+          </div>
+          <div class="offering-item">
+            <div class="offering-icon-wrapper">
+                <i class="fas fa-chart-pie offering-icon"></i>
+            </div>
+            <h3>Business Intelligence (BI) Solutions</h3>
+            <p>Creating interactive dashboards, reports, and visualizations for clear, real-time insights.</p>
+          </div>
+          <div class="offering-item">
+            <div class="offering-icon-wrapper">
+                <i class="fas fa-brain offering-icon"></i>
+            </div>
+            <h3>Predictive Analytics & ML</h3>
+            <p>Leveraging machine learning models to forecast trends, predict outcomes, and automate decisions.</p>
+          </div>
+          <div class="offering-item">
+            <div class="offering-icon-wrapper">
+                <i class="fas fa-cubes offering-icon"></i>
+            </div>
+            <h3>Big Data Solutions</h3>
+            <p>Implementing scalable solutions for collecting, processing, and analyzing massive datasets.</p>
+          </div>
+          <div class="offering-item">
+            <div class="offering-icon-wrapper">
+                <i class="fas fa-search-dollar offering-icon"></i>
+            </div>
+            <h3>Financial & Risk Analytics</h3>
+            <p>Applying data science to financial forecasting, fraud detection, and risk assessment.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-approach-section">
+      <div class="container feature-content-wrapper">
+        <div class="feature-text">
+          <h2>Our Data-Driven Analytics Approach</h2>
+          <p class="text-large">
+            We follow a structured methodology to ensure data integrity, insightful analysis, and actionable recommendations.
+          </p>
+          <ul>
+            <li><strong>Define & Discover:</strong> Understanding your business questions and data sources.</li>
+            <li><strong>Collect & Integrate:</strong> Gathering and consolidating data from various systems.</li>
+            <li><strong>Clean & Prepare:</strong> Ensuring data quality, consistency, and readiness for analysis.</li>
+            <li><strong>Analyze & Model:</strong> Applying statistical methods and machine learning algorithms.</li>
+            <li><strong>Visualize & Report:</strong> Presenting insights through intuitive dashboards and comprehensive reports.</li>
+            <li><strong>Implement & Optimize:</strong> Guiding integration of insights into business processes and continuous refinement.</li>
+          </ul>
+        </div>
+        <div class="feature-image">
+          <img src="https://images.unsplash.com/photo-1587840177741-9a74422df50b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Data Analysis Process" />
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section bg-secondary-section">
+      <div class="container text-center">
+        <h2>Ready to Unleash the Power of Your Data?</h2>
+        <p class="text-large">Let's connect and transform your raw data into your most valuable asset.</p>
+        <a href="../contact.html" class="btn">Start Your Data Journey</a>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <p>&copy; 2025 Technova. All rights reserved.</p>
+    <p>&copy; 2025 TechNova. All rights reserved.</p>
   </footer>
 
   <script src="../script.js"></script>

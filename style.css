@@ -1829,6 +1829,143 @@ body.dark .team-placeholder {
     background-color: var(--card-bg);
 }
 
+/* ================================================================= */
+/* === ABOUT PAGE: TEAM SECTION STYLES (DIFFERENT CARD STYLE) === */
+/* ================================================================= */
+
+.team-member-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Slightly wider cards */
+    gap: var(--spacing-xxl); /* Spacing between cards */
+    margin-top: var(--spacing-xxl); /* Space below the section text */
+}
+
+.team-member-card {
+    background-color: var(--card-bg); /* Use card background variable */
+    padding: var(--spacing-xxl); /* Increased padding */
+    border-radius: var(--radius-xl); /* Consistent border-radius */
+    box-shadow: var(--shadow-subtle); /* Subtle shadow for depth */
+    text-align: left; /* KEY CHANGE: Left-aligned text */
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
+    border: 1px solid var(--border-color); /* Light border */
+    display: flex; /* Use flexbox for internal layout */
+    flex-direction: column; /* Stack content vertically */
+    align-items: flex-start; /* Align content to the start (left) */
+}
+
+.team-member-card:hover {
+    transform: translateY(-8px); /* More pronounced lift effect on hover */
+    box-shadow: var(--shadow-elevated); /* More pronounced shadow on hover */
+    border-color: var(--primary-color); /* KEY CHANGE: Primary color border on hover */
+}
+
+.team-member-photo {
+    width: 120px; /* Slightly larger size for profile photo */
+    height: 120px;
+    border-radius: 12px; /* KEY CHANGE: Rounded square */
+    object-fit: cover; /* Ensures image covers the area without distortion */
+    margin-bottom: var(--spacing-xl); /* Increased margin below photo */
+    /* Removed the primary color border by default */
+    box-shadow: var(--shadow-subtle); /* Add a subtle shadow to the photo itself */
+    align-self: center; /* Center the image horizontally within the flex container */
+    flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+
+.team-member-card h3 {
+    font-size: clamp(24px, 2.8vw, 30px); /* Slightly larger name */
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-color);
+    font-weight: 700; /* Bolder name */
+}
+
+.team-member-card .team-member-title {
+    font-size: 17px;
+    color: var(--primary-color); /* Differentiate title color */
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;
+}
+
+.team-member-card .team-member-bio {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xl); /* Space before social icons */
+    line-height: 1.6;
+}
+
+.team-member-card .social-icons {
+    margin-top: auto; /* Push social icons to the bottom */
+    width: 100%; /* Ensure icons take full width for left alignment */
+    text-align: left; /* Align social icons to the left */
+}
+
+.team-member-card .social-icons a {
+    color: var(--text-secondary);
+    font-size: 22px; /* Slightly larger icons */
+    margin-right: var(--spacing-md); /* Space between icons */
+    transition: color var(--transition-smooth);
+}
+
+.team-member-card .social-icons a:hover {
+    color: var(--primary-color);
+}
+
+/* Dark mode adjustments */
+body.dark .team-member-card {
+    background-color: var(--card-bg-dark);
+    box-shadow: var(--shadow-subtle-dark);
+    border-color: var(--border-color-dark);
+}
+body.dark .team-member-card:hover {
+    box-shadow: var(--shadow-elevated-dark);
+    border-color: var(--primary-color-dark);
+}
+body.dark .team-member-photo {
+    box-shadow: var(--shadow-subtle-dark);
+}
+
+body.dark .team-member-card h3 {
+    color: var(--text-color-dark);
+}
+body.dark .team-member-card .team-member-title {
+    color: var(--primary-color-dark);
+}
+body.dark .team-member-card .team-member-bio {
+    color: var(--text-secondary-dark);
+}
+body.dark .team-member-card .social-icons a {
+    color: var(--text-secondary-dark);
+}
+body.dark .team-member-card .social-icons a:hover {
+    color: var(--primary-color-dark);
+}
+
+/* Responsive adjustments for very small screens */
+@media (max-width: 600px) {
+    .team-member-grid {
+        grid-template-columns: 1fr; /* Stack cards vertically on small screens */
+        gap: var(--spacing-xl);
+    }
+    .team-member-card {
+        padding: var(--spacing-lg);
+        align-items: center; /* Center content on small screens if desired */
+        text-align: center; /* Center text on small screens if desired */
+    }
+    .team-member-photo {
+        margin-bottom: var(--spacing-md);
+        align-self: center; /* Ensure image remains centered */
+    }
+    .team-member-card h3 {
+        font-size: 24px;
+    }
+    .team-member-card .team-member-bio {
+        margin-bottom: var(--spacing-lg);
+    }
+    .team-member-card .social-icons {
+        text-align: center; /* Center icons on small screens if text is centered */
+    }
+}
+
 /* --- Contact Page Redesign --- */
 
 .contact-grid-section {
