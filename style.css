@@ -2610,6 +2610,7 @@ body.dark .social-links-contact a {
     border-radius: var(--radius-xl); /* Apply border-radius to the container */
     box-shadow: var(--shadow-elevated); /* Apply initial shadow to container */
     transition: box-shadow var(--transition-smooth);
+    padding-top: 30px;
 }
 
 .service-why-choose-us-section .feature-image img,
