@@ -79,7 +79,12 @@ body {
 }
 
 /* Apple Typography System */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 600;
   line-height: 1.07143;
@@ -88,35 +93,35 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-color);
 }
 
-h1 { 
+h1 {
   font-size: clamp(32px, 5vw, 80px);
   font-weight: 700;
   letter-spacing: -0.015em;
   line-height: 1.05;
 }
 
-h2 { 
+h2 {
   font-size: clamp(24px, 4vw, 56px);
   font-weight: 600;
   letter-spacing: -0.01em;
 }
 
-h3 { 
+h3 {
   font-size: clamp(20px, 3vw, 32px);
   font-weight: 600;
 }
 
-h4 { 
+h4 {
   font-size: 24px;
   font-weight: 600;
 }
 
-h5 { 
+h5 {
   font-size: 21px;
   font-weight: 600;
 }
 
-h6 { 
+h6 {
   font-size: 19px;
   font-weight: 600;
 }
@@ -187,10 +192,12 @@ a:hover {
   align-items: center;
 }
 
+/* IMPORTANT FIX: Apply position: relative to the LI that contains the dropdown */
 .nav-links li {
   position: relative;
 }
 
+/* Enhanced hover effect for top-level nav links */
 .nav-links li a {
   color: var(--text-color);
   font-size: 12px;
@@ -200,6 +207,8 @@ a:hover {
   border-radius: var(--radius-md);
   transition: all var(--transition-fast);
   opacity: 0.8;
+  position: relative;
+  overflow: hidden;
 }
 
 .nav-links li a:hover,
@@ -210,12 +219,33 @@ a:hover {
   transform: none;
 }
 
-.dropdown-menu {
-  display: none;
+/* Add a subtle underline animation on hover for top-level links */
+.nav-links li a::after {
+  content: '';
   position: absolute;
-  top: calc(100% + 8px);
+  bottom: 0;
   left: 0;
-  min-width: 200px;
+  width: 100%;
+  height: 1px;
+  background-color: var(--primary-color);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform var(--transition-fast) ease-out;
+}
+
+.nav-links li a:hover::after,
+.nav-links li a.active::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Dropdown Menu Enhancements */
+.dropdown-menu {
+  list-style: none;
+  position: absolute;
+  top: 100%; /* Changed from calc(100% + 12px) to directly attach to LI bottom */
+  left: 0;
+  min-width: 220px;
   background-color: var(--card-bg);
   border: 0.5px solid var(--border-color);
   border-radius: var(--radius-lg);
@@ -224,10 +254,20 @@ a:hover {
   z-index: 999;
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out, visibility 0.2s ease-out;
+  pointer-events: none;
 }
 
-.dropdown:hover .dropdown-menu {
-  display: block;
+/* CRITICAL FIX: The hover state applies to the parent LI, not just the A tag */
+.nav-links li.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
   animation: fadeInUp 0.2s ease-out;
 }
 
@@ -236,19 +276,29 @@ a:hover {
 }
 
 .dropdown-menu a {
-  display: block;
-  width: 100%;
-  padding: var(--spacing-xs) var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: 10px var(--spacing-sm);
   color: var(--text-color);
-  font-size: 14px;
-  transition: background-color var(--transition-fast);
-  border-radius: 0;
-  opacity: 0.8;
+  font-size: 15px;
+  transition: background-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+  border-radius: var(--radius-sm);
+  margin: 0 var(--spacing-xs);
+  opacity: 1;
 }
 
 .dropdown-menu a:hover {
-  background-color: var(--bg-secondary);
-  opacity: 1;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  box-shadow: var(--shadow-subtle);
+  transform: translateY(-1px);
+}
+
+/* Dark mode adjustments for dropdown */
+body.dark .dropdown-menu a:hover {
+  background-color: var(--primary-color);
+  color: var(--text-color);
 }
 
 #theme-toggle {
@@ -293,7 +343,7 @@ a:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
   animation: backgroundPulse 8s ease-in-out infinite;
@@ -470,9 +520,10 @@ a:hover {
 
 .btn:hover {
   background: var(--primary-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-elevated);
-  animation: buttonPulse 1.5s infinite;
+  color: #ffffff;
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 8px 24px rgba(0, 113, 227, 0.2);
+  animation: buttonPulse 1.5s infinite, btnFloat 0.5s forwards;
 }
 
 .btn:active {
@@ -560,7 +611,7 @@ footer {
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
+  background:
     radial-gradient(circle at 20% 30%, rgba(120, 119, 198, 0.08) 0%, transparent 50%),
     radial-gradient(circle at 80% 70%, rgba(255, 107, 53, 0.08) 0%, transparent 50%);
   animation: servicesFloat 12s ease-in-out infinite;
@@ -831,36 +882,263 @@ footer {
   text-align: center;
 }
 
+/* --- NEW HOMEPAGE SECTIONS CSS --- */
+
+/* Generic Container for Content Width */
+.container {
+  max-width: 980px; /* Standard Apple content width */
+  margin: 0 auto;
+  padding: 0 var(--spacing-md); /* Consistent side padding */
+}
+
+/* Section Spacing */
+.philosophy-section,
+.services-overview-section,
+.blog-preview-section,
+.cta-section {
+  padding: var(--spacing-xxl) var(--spacing-md); /* Top/bottom padding for sections */
+  background-color: var(--bg-color); /* Default background */
+  text-align: center; /* Center align section titles and main paragraphs */
+}
+
+/* Adjust background for alternate sections */
+.philosophy-section,
+.blog-preview-section {
+  background-color: var(--bg-secondary); /* Give alternating sections a slightly different background */
+}
+
+
+/* Philosophy Grid */
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg); /* Space between items */
+  margin-top: var(--spacing-xl); /* Space below section description */
+  text-align: left; /* Align text within philosophy items */
+}
+
+.philosophy-item {
+  background-color: var(--card-bg);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-xl);
+  border: 0.5px solid var(--border-color);
+  box-shadow: var(--shadow-subtle);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.philosophy-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-elevated);
+}
+
+.philosophy-item h3 {
+  font-size: 20px;
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-color);
+}
+
+.philosophy-item p {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: 0; /* Remove default paragraph margin-bottom */
+}
+
+/* Services Overview Grid (similar to existing service-card, but for homepage summary) */
+.services-grid-home {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.service-card-overview {
+  display: block; /* Make the whole card clickable */
+  background-color: var(--card-bg);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-xl);
+  border: 0.5px solid var(--border-color);
+  box-shadow: var(--shadow-subtle);
+  transition: all var(--transition-smooth);
+  text-align: left; /* Text alignment within card */
+  color: var(--text-color); /* Ensure link text color is correct */
+}
+
+.service-card-overview:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevated);
+  border-color: var(--primary-color); /* Highlight on hover */
+}
+
+.service-card-overview h3 {
+  font-size: 24px;
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-color);
+}
+
+.service-card-overview p {
+  font-size: 17px;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-sm); /* Space before "Learn More" */
+  line-height: 1.5;
+}
+
+.service-card-overview .learn-more {
+  display: inline-block; /* Ensure arrow stays with text */
+  font-size: 15px;
+  color: var(--primary-color);
+  font-weight: 500;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.service-card-overview:hover .learn-more {
+  color: var(--primary-hover);
+  transform: translateX(4px); /* Subtle arrow slide */
+}
+
+/* Blog Cards Home */
+.blog-cards-home {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.blog-card-home {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: 0.5px solid var(--border-color);
+  box-shadow: var(--shadow-subtle);
+  transition: all var(--transition-smooth);
+  overflow: hidden; /* Ensure image corners are rounded */
+  text-align: left;
+  color: var(--text-color);
+}
+
+.blog-card-home:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-elevated);
+  border-color: var(--primary-color);
+}
+
+.blog-thumbnail {
+  width: 100%;
+  height: 200px; /* Fixed height for consistency */
+  object-fit: cover; /* Cover the area, crop if necessary */
+  border-top-left-radius: var(--radius-xl);
+  border-top-right-radius: var(--radius-xl);
+  transition: transform 0.3s ease-in-out;
+}
+
+.blog-card-home:hover .blog-thumbnail {
+  transform: scale(1.03); /* Subtle zoom effect on hover */
+}
+
+.blog-content-home {
+  padding: var(--spacing-xl);
+}
+
+.blog-content-home h3 {
+  font-size: 20px;
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-color);
+}
+
+.blog-content-home p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.5;
+}
+
+.blog-content-home .read-article {
+  display: inline-block;
+  font-size: 15px;
+  color: var(--primary-color);
+  font-weight: 500;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.blog-card-home:hover .read-article {
+  color: var(--primary-hover);
+  transform: translateX(4px);
+}
+
+/* CTA Section - Simple and direct */
+.cta-section {
+  background-color: var(--primary-color); /* Strong primary background */
+  color: #ffffff; /* White text on primary background */
+  padding: var(--spacing-xxl) var(--spacing-md);
+  text-align: center;
+}
+
+.cta-section h2 {
+  color: #ffffff; /* Override text-color for white */
+  margin-bottom: var(--spacing-sm);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-size: clamp(28px, 4vw, 48px);
+}
+
+.cta-section p {
+  color: rgba(255, 255, 255, 0.8); /* Slightly transparent white for secondary text */
+  max-width: 700px;
+  margin: 0 auto var(--spacing-xl) auto;
+}
+
+.cta-section .btn {
+  background-color: #ffffff; /* White button on primary background */
+  color: var(--primary-color); /* Primary color text for button */
+}
+
+.cta-section .btn:hover {
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly less opaque white */
+  color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* Subtle shadow for white button */
+}
+
+
 /* Apple-style Responsive Design */
 @media (max-width: 768px) {
   .navbar {
     padding: 12px var(--spacing-sm);
   }
-  
+
   .nav-links {
     gap: var(--spacing-sm);
   }
-  
+
   .nav-links li a {
     padding: var(--spacing-xs);
     font-size: 11px;
   }
-  
+
   .hero {
     min-height: 60vh;
     padding: var(--spacing-xl) var(--spacing-sm);
   }
-  
-  .services-list {
-    grid-template-columns: 1fr;
+
+  /* Adjust padding for new homepage sections */
+  .philosophy-section,
+  .services-overview-section,
+  .blog-preview-section,
+  .cta-section {
     padding: var(--spacing-xl) var(--spacing-sm);
   }
-  
-  .about-content,
-  .contact-container,
-  .blog-posts,
-  .service-page {
-    padding: var(--spacing-xl) var(--spacing-sm);
+
+  /* Ensure grids collapse to single column or adjust as needed */
+  .philosophy-grid,
+  .services-grid-home,
+  .blog-cards-home {
+    grid-template-columns: 1fr; /* Stack columns on small screens */
+  }
+
+  /* Adjust philosophy item padding for smaller screens if necessary */
+  .philosophy-item {
+    padding: var(--spacing-md);
   }
 }
 
@@ -870,6 +1148,7 @@ footer {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -877,10 +1156,12 @@ footer {
 }
 
 @keyframes backgroundPulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.3;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.6;
     transform: scale(1.1);
@@ -891,6 +1172,7 @@ footer {
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(100%);
   }
@@ -901,18 +1183,22 @@ footer {
     transform: translateY(0px) rotate(0deg);
     opacity: 0.3;
   }
+
   25% {
     transform: translateY(-20px) rotate(90deg);
     opacity: 0.6;
   }
+
   50% {
     transform: translateY(0px) rotate(180deg);
     opacity: 0.4;
   }
+
   75% {
     transform: translateY(-10px) rotate(270deg);
     opacity: 0.7;
   }
+
   100% {
     transform: translateY(0px) rotate(360deg);
     opacity: 0.3;
@@ -924,14 +1210,17 @@ footer {
     transform: translateY(100vh) scale(0);
     opacity: 0;
   }
+
   10% {
     opacity: 0.3;
     transform: translateY(90vh) scale(1);
   }
+
   90% {
     opacity: 0.3;
     transform: translateY(10vh) scale(1);
   }
+
   100% {
     transform: translateY(0vh) scale(0);
     opacity: 0;
@@ -943,6 +1232,7 @@ footer {
     opacity: 0.2;
     transform: scale(0.8);
   }
+
   100% {
     opacity: 0.4;
     transform: scale(1.2);
@@ -950,10 +1240,12 @@ footer {
 }
 
 @keyframes servicesFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
     opacity: 0.3;
   }
+
   50% {
     transform: translateY(-10px);
     opacity: 0.5;
@@ -964,18 +1256,22 @@ footer {
   0% {
     box-shadow: 0 0 20px rgba(0, 113, 227, 0.1);
   }
+
   50% {
     box-shadow: 0 0 30px rgba(0, 113, 227, 0.2);
   }
+
   100% {
     box-shadow: 0 0 20px rgba(0, 113, 227, 0.1);
   }
 }
 
 @keyframes navbarFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-1px);
   }
@@ -985,17 +1281,34 @@ footer {
   0% {
     box-shadow: 0 0 0 0 rgba(0, 113, 227, 0.4);
   }
+
   70% {
     box-shadow: 0 0 0 10px rgba(0, 113, 227, 0);
   }
+
   100% {
     box-shadow: 0 0 0 0 rgba(0, 113, 227, 0);
   }
 }
 
+@keyframes btnFloat {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-2px);
+  }
+}
+
+
 .service-card,
 .about-block,
-.post-card {
+.post-card,
+.philosophy-item, /* Apply animation to new items */
+.service-card-overview, /* Apply animation to new items */
+.blog-card-home /* Apply animation to new items */
+ {
   animation: fadeInUp 0.6s ease-out;
 }
 
@@ -1041,22 +1354,847 @@ select:focus {
 }
 
 /* Apple-style Utility Classes */
-.text-center { text-align: center; }
-.text-left { text-align: left; }
-.text-right { text-align: right; }
+.text-center {
+  text-align: center;
+}
 
-.mt-xs { margin-top: var(--spacing-xs); }
-.mt-sm { margin-top: var(--spacing-sm); }
-.mt-md { margin-top: var(--spacing-md); }
-.mt-lg { margin-top: var(--spacing-lg); }
-.mt-xl { margin-top: var(--spacing-xl); }
+.text-left {
+  text-align: left;
+}
 
-.mb-xs { margin-bottom: var(--spacing-xs); }
-.mb-sm { margin-bottom: var(--spacing-sm); }
-.mb-md { margin-bottom: var(--spacing-md); }
-.mb-lg { margin-bottom: var(--spacing-lg); }
-.mb-xl { margin-bottom: var(--spacing-xl); }
+.text-right {
+  text-align: right;
+}
 
-.opacity-60 { opacity: 0.6; }
-.opacity-80 { opacity: 0.8; }
-.opacity-100 { opacity: 1; }
+.mt-xs {
+  margin-top: var(--spacing-xs);
+}
+
+.mt-sm {
+  margin-top: var(--spacing-sm);
+}
+
+.mt-md {
+  margin-top: var(--spacing-md);
+}
+
+.mt-lg {
+  margin-top: var(--spacing-lg);
+}
+
+.mt-xl {
+  margin-top: var(--spacing-xl);
+}
+
+.mb-xs {
+  margin-bottom: var(--spacing-xs);
+}
+
+.mb-sm {
+  margin-bottom: var(--spacing-sm);
+}
+
+.mb-md {
+  margin-bottom: var(--spacing-md);
+}
+
+.mb-lg {
+  margin-bottom: var(--spacing-lg);
+}
+
+.mb-xl {
+  margin-bottom: var(--spacing-xl);
+}
+
+.opacity-60 {
+  opacity: 0.6;
+}
+
+.opacity-80 {
+  opacity: 0.8;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+/* Accessibility: Reduce motion for users who prefer it */
+@media (prefers-reduced-motion) {
+  .hero::before,
+  .hero::after,
+  .floating-shape,
+  .particle,
+  .page-header::before,
+  .services-list::before,
+  .service-card:hover,
+  .btn:hover,
+  .service-card,
+  .about-block,
+  .post-card,
+  .philosophy-item, /* Include new items */
+  .service-card-overview, /* Include new items */
+  .blog-card-home /* Include new items */
+   {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* --- Services List Redesign --- */
+
+.services-list {
+    display: grid; /* Make sure this is still a grid, but its direct children are now .service-block-link */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    padding: var(--spacing-xxl) var(--spacing-md);
+    max-width: 1200px; /* Adjust as needed, container below might manage this */
+    margin: 0 auto;
+    position: relative;
+    /* Optional: Remove any ::before pseudo-elements that might conflict if not wanted */
+    /* background-color: var(--bg-secondary); /* Give the whole section a subtle background if not already defined for .services-list section directly */
+}
+
+/* Ensure the .container within services-list is used for max-width if preferred */
+.services-list .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    /* No max-width here if the parent .services-list already has one, or vice-versa.
+       If .services-list has max-width, this .container's max-width can be removed.
+       If this .container needs to enforce width, add: max-width: 1200px; margin: 0 auto; */
+}
+
+
+.service-block-link {
+    display: block; /* Make the entire block clickable */
+    text-decoration: none;
+    color: inherit; /* Inherit text color from parent to apply dark/light mode */
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+    /* Apply fade-in animation to each card as it appears */
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0; /* Start hidden for animation */
+}
+
+/* Stagger animations for a nicer effect */
+.service-block-link:nth-child(1) { animation-delay: 0.1s; }
+.service-block-link:nth-child(2) { animation-delay: 0.2s; }
+.service-block-link:nth-child(3) { animation-delay: 0.3s; }
+.service-block-link:nth-child(4) { animation-delay: 0.4s; }
+.service-block-link:nth-child(5) { animation-delay: 0.5s; }
+.service-block-link:nth-child(6) { animation-delay: 0.6s; }
+.service-block-link:nth-child(7) { animation-delay: 0.7s; }
+.service-block-link:nth-child(8) { animation-delay: 0.8s; }
+
+
+.service-block {
+    background: var(--card-bg);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-xl);
+    border: 0.5px solid var(--border-color);
+    box-shadow: var(--shadow-subtle);
+    height: 100%; /* Ensure all cards are same height in a row for grid layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align content to the left */
+    text-align: left; /* Ensure text is left-aligned */
+    transition: transform var(--transition-smooth),
+                box-shadow var(--transition-smooth),
+                border-color var(--transition-smooth),
+                background-color var(--transition-smooth);
+}
+
+.service-block-link:hover .service-block {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elevated);
+    border-color: var(--primary-color);
+    animation: cardGlow 2s ease-in-out infinite; /* Add this line */
+}
+
+.service-icon-wrapper {
+    width: 60px; /* Size of the icon area */
+    height: 60px;
+    background-color: var(--bg-secondary); /* Subtle background for the icon */
+    border-radius: 50%; /* Make it round */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    transition: background-color var(--transition-fast);
+}
+
+.service-block-link:hover .service-icon-wrapper {
+    background-color: var(--primary-color); /* Icon background changes on hover */
+}
+
+.service-icon {
+    width: 32px; /* Size of the SVG icon */
+    height: 32px;
+    color: var(--primary-color); /* Icon color */
+    transition: color var(--transition-fast);
+}
+
+.service-block-link:hover .service-icon {
+    color: #ffffff; /* Icon color changes to white on hover */
+}
+
+.service-block h3 {
+    font-size: 24px;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-color);
+}
+
+.service-block p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    flex-grow: 1; /* Allow paragraph to take up available space for consistent height */
+    margin-bottom: var(--spacing-sm); /* Space before "Learn More" */
+}
+
+.service-read-more {
+    display: inline-flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--primary-color);
+    transition: color var(--transition-fast), transform var(--transition-fast);
+    white-space: nowrap; /* Prevent "Learn More" from wrapping */
+}
+
+.service-block-link:hover .service-read-more {
+    color: var(--primary-hover);
+    transform: translateX(4px); /* Subtle slide for the text/arrow */
+}
+
+
+/* Dark mode adjustments for new elements */
+body.dark .service-icon-wrapper {
+    background-color: var(--card-bg);
+}
+
+body.dark .service-block-link:hover .service-icon-wrapper {
+    background-color: var(--primary-color);
+}
+
+/* Adjustments for the general .service-card if it still exists elsewhere and is causing issues */
+/* You might want to remove the old .service-card styles if they are no longer used on this page */
+/* Example of how to reset if needed: */
+/* .service-card {
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    transition: none;
+    position: static;
+    overflow: visible;
+}
+.service-card:hover::before, .service-card::before { content: none; }
+.service-card:hover { transform: none; box-shadow: none; border-color: transparent; animation: none; } */
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .services-list {
+        padding: var(--spacing-xl) var(--spacing-sm);
+    }
+    .services-list .container {
+        grid-template-columns: 1fr; /* Stack columns on small screens */
+    }
+    .service-block {
+        padding: var(--spacing-md); /* Adjust padding for smaller screens */
+    }
+}
+
+/* --- About Page Redesign --- */
+
+/* Reusing .feature-content-wrapper from Services Option 2 for story section */
+.about-story-section {
+    padding: var(--spacing-xxl) 0;
+    background-color: var(--bg-color);
+}
+
+.about-story-section .feature-content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+    text-align: center; /* Default for mobile */
+    max-width: 980px; /* Standard content width */
+    margin: 0 auto;
+    padding: 0 var(--spacing-md); /* Consistent inner padding */
+}
+
+@media (min-width: 768px) {
+    .about-story-section .feature-content-wrapper {
+        grid-template-columns: 1fr 1fr; /* Two columns on larger screens */
+        text-align: left; /* Text aligns left in columns */
+    }
+    /* You can add .reverse-order here if you want to alternate image/text sides */
+    /* .about-story-section .feature-content-wrapper.reverse-order {
+        grid-template-areas: "image text";
+    }
+    .about-story-section .feature-content-wrapper.reverse-order .feature-text {
+        grid-area: text;
+    }
+    .about-story-section .feature-content-wrapper.reverse-order .feature-image {
+        grid-area: image;
+    } */
+}
+
+.about-story-section .feature-text h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    margin-bottom: var(--spacing-md);
+    color: var(--text-color);
+    text-align: center; /* Ensure heading is centered on small screens */
+}
+
+.about-story-section .feature-text p {
+    margin-bottom: var(--spacing-md);
+    color: var(--text-secondary);
+}
+
+.about-story-section .feature-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-elevated);
+    transition: transform var(--transition-smooth);
+}
+
+.about-story-section .feature-image img:hover {
+    transform: scale(1.01);
+}
+
+/* Our Values Section */
+.about-values-section {
+    padding: var(--spacing-xxl) var(--spacing-md);
+    background-color: var(--bg-secondary); /* Alternating background */
+    text-align: center;
+}
+
+.about-values-section h2 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-color);
+}
+
+.about-values-section p.text-large {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-xl) auto;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.value-item {
+    background-color: var(--card-bg);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-xl);
+    border: 0.5px solid var(--border-color);
+    box-shadow: var(--shadow-subtle);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    text-align: center;
+}
+
+.value-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elevated);
+}
+
+.value-icon-wrapper {
+    width: 72px; /* Larger icon area */
+    height: 72px;
+    background-color: var(--bg-secondary);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto var(--spacing-md) auto; /* Center the icon */
+    transition: background-color var(--transition-fast);
+}
+
+.value-item:hover .value-icon-wrapper {
+    background-color: var(--primary-color);
+}
+
+.value-icon {
+    font-size: 36px; /* Size for Font Awesome icons */
+    color: var(--primary-color);
+    transition: color var(--transition-fast);
+}
+
+.value-item:hover .value-icon {
+    color: #ffffff;
+}
+
+.value-item h3 {
+    font-size: 21px;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-color);
+}
+
+.value-item p {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+}
+
+
+/* Meet the Team Section */
+.about-team-section {
+    padding: var(--spacing-xxl) var(--spacing-md);
+    background-color: var(--bg-color);
+    text-align: center;
+}
+
+.about-team-section h2 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-color);
+}
+
+.about-team-section p.text-large {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-xl) auto;
+}
+
+.team-placeholder {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-lg); /* Add some padding around placeholder */
+    background-color: var(--bg-secondary); /* Subtle background for the placeholder */
+    border-radius: var(--radius-xl);
+    border: 0.5px solid var(--border-color);
+    display: inline-block; /* Helps with centering */
+    max-width: 900px; /* Constrain width if needed */
+}
+
+
+/* Example Team Grid (if you decide to use it later) */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.team-member-card {
+    background: var(--card-bg);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-xl);
+    border: 0.5px solid var(--border-color);
+    box-shadow: var(--shadow-subtle);
+    text-align: center;
+}
+
+.team-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: var(--spacing-sm);
+    border: 3px solid var(--primary-color);
+}
+
+.team-member-card h3 {
+    font-size: 19px;
+    margin-bottom: var(--spacing-xs);
+}
+
+.team-member-card .text-secondary {
+    font-size: 15px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.social-links a {
+    color: var(--text-secondary);
+    font-size: 20px;
+    margin: 0 var(--spacing-xs);
+    transition: color var(--transition-fast);
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Dark mode adjustments for new About page elements */
+body.dark .value-icon-wrapper {
+    background-color: var(--card-bg); /* Use card background for icons in dark mode */
+}
+
+body.dark .value-item:hover .value-icon-wrapper {
+    background-color: var(--primary-color); /* Primary color on hover for icons */
+}
+
+body.dark .team-placeholder {
+    background-color: var(--card-bg);
+}
+
+/* --- Contact Page Redesign --- */
+
+.contact-grid-section {
+    padding: var(--spacing-xxl) 0;
+    background-color: var(--bg-secondary); /* Give it a subtle background */
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Stack columns on smaller screens */
+    gap: var(--spacing-xl);
+    max-width: 1000px; /* Adjust max width as needed */
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    align-items: flex-start; /* Align cards to top */
+}
+
+@media (min-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1.5fr 1fr; /* Form slightly wider than info */
+    }
+}
+
+.contact-form-card,
+.contact-info-card {
+    background-color: var(--card-bg);
+    padding: var(--spacing-xxl);
+    border-radius: var(--radius-xl);
+    border: 0.5px solid var(--border-color);
+    box-shadow: var(--shadow-subtle);
+    height: 100%; /* Ensure cards fill grid cell height */
+    display: flex; /* Use flexbox for internal layout if needed */
+    flex-direction: column;
+}
+
+.contact-form-card h2,
+.contact-info-card h2 {
+    font-size: 32px;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-color);
+}
+
+.contact-form .form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 15px;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background-color: var(--input-bg); /* Use a variable for input background */
+    color: var(--text-color);
+    font-size: 16px;
+    font-family: inherit; /* Inherit font from body */
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2); /* Subtle focus ring */
+}
+
+.contact-form textarea {
+    resize: vertical; /* Allow vertical resizing */
+}
+
+/* Specific styling for the Send Message button if needed */
+.contact-form .btn {
+    width: auto; /* Let button take its natural width */
+    margin-top: var(--spacing-md);
+}
+
+
+/* Contact Info Card Styling */
+.contact-info-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-info-card .info-item {
+    display: flex;
+    align-items: flex-start; /* Align icon with text top */
+    margin-bottom: var(--spacing-lg);
+    gap: var(--spacing-md); /* Space between icon and text */
+}
+
+.contact-info-card .info-item .icon-large {
+    font-size: 28px; /* Size for Font Awesome icons */
+    color: var(--primary-color);
+    flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+.contact-info-card .info-item h3 {
+    font-size: 19px;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-color);
+}
+
+.contact-info-card .info-item p {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin-bottom: var(--spacing-xs);
+}
+
+.contact-info-card .text-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition-fast);
+}
+
+.contact-info-card .text-link:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+/* Social Links for Contact Info Card */
+.social-links-contact {
+    margin-top: auto; /* Push social links to the bottom of the card */
+    padding-top: var(--spacing-lg); /* Space from above content */
+    border-top: 1px solid var(--border-color); /* Separator line */
+}
+
+.social-links-contact h3 {
+    font-size: 19px;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-color);
+}
+
+.social-links-contact a {
+    color: var(--text-secondary);
+    margin-right: var(--spacing-md);
+    font-size: 28px; /* Size of social icons */
+    transition: color var(--transition-fast);
+}
+
+.social-links-contact a:hover {
+    color: var(--primary-color);
+}
+
+
+/* Google Map Section */
+.contact-map {
+    padding: var(--spacing-xxl) var(--spacing-md);
+    background-color: var(--bg-color); /* Matches page background */
+    text-align: center;
+}
+
+.contact-map h2 {
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-color);
+}
+
+.map-embed-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-elevated); /* Elevated shadow for the map */
+}
+
+.map-embed-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0; /* Remove iframe border */
+}
+
+
+/* Dark mode adjustments for new Contact page elements */
+body.dark .contact-form input,
+body.dark .contact-form textarea {
+    background-color: var(--input-bg-dark); /* Use darker input background in dark mode */
+    border-color: var(--border-color-dark);
+}
+
+body.dark .contact-form input:focus,
+body.dark .contact-form textarea:focus {
+    box-shadow: 0 0 0 3px rgba(var(--primary-rgb-dark), 0.2);
+}
+
+body.dark .social-links-contact a {
+    color: var(--text-secondary); /* Maintain color, or adjust for dark mode contrast */
+}
+
+/* --- Blog Page Redesign --- */
+
+.blog-posts-grid-section {
+    padding: var(--spacing-xxl) 0;
+    background-color: var(--bg-secondary); /* Subtle background for the section */
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    max-width: 1200px; /* Adjust max width as needed */
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.blog-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-bg);
+    border-radius: var(--radius-xl);
+    border: 0.5px solid var(--border-color);
+    box-shadow: var(--shadow-subtle);
+    transition: all var(--transition-smooth);
+    overflow: hidden; /* Ensure image corners are rounded */
+    text-align: left;
+    color: var(--text-color);
+    text-decoration: none; /* Remove underline from the whole card link */
+
+    /* Apply fade-in animation to each card as it appears */
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0; /* Start hidden for animation */
+}
+
+/* Stagger animations for a nicer effect */
+.blog-card:nth-child(1) { animation-delay: 0.1s; }
+.blog-card:nth-child(2) { animation-delay: 0.2s; }
+.blog-card:nth-child(3) { animation-delay: 0.3s; }
+.blog-card:nth-child(4) { animation-delay: 0.4s; }
+.blog-card:nth-child(5) { animation-delay: 0.5s; }
+.blog-card:nth-child(6) { animation-delay: 0.6s; }
+/* Add more for additional posts */
+
+
+.blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elevated);
+    border-color: var(--primary-color);
+}
+
+.blog-thumbnail {
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover; /* Cover the area, crop if necessary */
+    border-top-left-radius: var(--radius-xl);
+    border-top-right-radius: var(--radius-xl);
+    transition: transform 0.3s ease-in-out;
+}
+
+.blog-card:hover .blog-thumbnail {
+    transform: scale(1.03); /* Subtle zoom effect on hover */
+}
+
+.blog-content {
+    padding: var(--spacing-xl);
+    display: flex; /* Use flex for content alignment */
+    flex-direction: column;
+    flex-grow: 1; /* Allow content to grow for consistent card height */
+}
+
+.blog-meta {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    margin-bottom: var(--spacing-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.blog-content h3 {
+    font-size: 20px;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-color);
+    line-height: 1.3;
+}
+
+.blog-content p.text-secondary {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.5;
+    flex-grow: 1; /* Allow description to take space */
+}
+
+.blog-content .read-article {
+    display: inline-flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--primary-color);
+    transition: color var(--transition-fast), transform var(--transition-fast);
+    white-space: nowrap;
+    margin-top: auto; /* Push to bottom of content area */
+}
+
+.blog-card:hover .read-article {
+    color: var(--primary-hover);
+    transform: translateX(4px);
+}
+
+/* Pagination Styling (Optional) */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-xxl);
+}
+
+.page-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 var(--spacing-sm);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-color);
+    border: 0.5px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 15px;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.page-link:hover {
+    background-color: var(--bg-secondary);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.page-link.active {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+    font-weight: 600;
+}
+
+.page-link.active:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .blog-posts-grid-section {
+        padding: var(--spacing-xl) var(--spacing-sm);
+    }
+    .blog-grid {
+        grid-template-columns: 1fr; /* Stack cards on small screens */
+    }
+    .blog-content {
+        padding: var(--spacing-md);
+    }
+}
