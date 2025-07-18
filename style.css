@@ -1146,25 +1146,51 @@ footer {
 
 /* Apple-style Responsive Design */
 @media (max-width: 768px) {
+  /* Your existing rules */
   .navbar {
     padding: 12px var(--spacing-sm);
+    /* NEW: Stacks logo, nav-links, and theme-toggle vertically */
+    flex-direction: column;
+    height: auto; /* Allow the navbar's height to expand to fit content */
+    align-items: center; /* Horizontally center all stacked items */
+    justify-content: flex-start; /* Align items to the top of the column */
+  }
+
+  /* NEW: Styling for the logo when stacked */
+  .logo {
+    margin-bottom: var(--spacing-sm); /* Add space below the logo */
   }
 
   .nav-links {
-    gap: var(--spacing-sm);
+    gap: var(--spacing-sm); /* Your existing rule for horizontal gap */
+    /* NEW: Ensure the navigation links remain horizontal */
+    flex-direction: row !important; /* Forces nav items to stay horizontal */
+    justify-content: center !important; /* Center the horizontal nav items */
+    align-items: center !important; /* Vertically center the nav items within their row */
+    width: 100%; /* Make the nav links container take full width */
+    margin-top: var(--spacing-sm); /* Add some space above the links section */
+    flex-wrap: wrap; /* Allow links to wrap to next line if screen is too narrow */
+  }
+
+  .nav-links li {
+    /* Revert width for horizontal layout, allow content to dictate width */
+    width: auto !important;
   }
 
   .nav-links li a {
-    padding: var(--spacing-xs);
-    font-size: 11px;
+    padding: var(--spacing-xs); /* Your existing rule */
+    font-size: 11px; /* Your existing rule */
+    /* NEW: Revert specific mobile vertical menu styles */
+    width: auto !important; /* Revert clickable area to content width */
+    text-align: left !important; /* Revert text alignment for horizontal links */
   }
 
   .hero {
-    min-height: 60vh;
-    padding: var(--spacing-xl) var(--spacing-sm);
+    min-height: 60vh; /* Your existing rule */
+    padding: var(--spacing-xl) var(--spacing-sm); /* Your existing rule */
   }
 
-  /* Adjust padding for new homepage sections */
+  /* Adjust padding for new homepage sections (Your existing rules) */
   .philosophy-section,
   .services-overview-section,
   .blog-preview-section,
@@ -1172,16 +1198,58 @@ footer {
     padding: var(--spacing-xl) var(--spacing-sm);
   }
 
-  /* Ensure grids collapse to single column or adjust as needed */
+  /* Ensure grids collapse to single column or adjust as needed (Your existing rules) */
   .philosophy-grid,
   .services-grid-home,
   .blog-cards-home {
     grid-template-columns: 1fr; /* Stack columns on small screens */
   }
 
-  /* Adjust philosophy item padding for smaller screens if necessary */
+  /* Adjust philosophy item padding for smaller screens if necessary (Your existing rules) */
   .philosophy-item {
     padding: var(--spacing-md);
+  }
+
+  /* NEW: Revert dropdown menu behavior to desktop-like (absolute positioning on hover) */
+  .dropdown-menu {
+      position: absolute !important; /* Revert to absolute positioning */
+      top: 100% !important; /* Position below parent link */
+      left: 0 !important; /* Align to the left of parent link */
+      width: auto !important; /* Revert width to fit content */
+      min-width: 220px !important; /* Assuming a typical desktop min-width */
+      box-shadow: var(--shadow-elevated) !important; /* Revert to desktop shadow */
+      background-color: var(--card-bg) !important; /* Revert to desktop background */
+      border: 0.5px solid var(--border-color) !important; /* Revert to desktop border */
+      padding: var(--spacing-sm) 0 !important; /* Adjust padding for desktop-like dropdown */
+      /* Initially hidden, will show on hover */
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transform: translateY(10px) !important;
+      transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease !important;
+      z-index: 100; /* Ensure it's above other content */
+  }
+
+  /* Ensure dropdown opens on hover for desktop-like behavior */
+  .nav-links li.dropdown:hover .dropdown-menu {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateY(0) !important;
+  }
+
+  /* NEW: Adjust the theme toggle's positioning */
+  #theme-toggle {
+    margin-top: var(--spacing-md); /* Add space above the theme toggle button */
+    margin-left: 0 !important; /* Remove any left margin that might push it */
+  }
+
+  /* Ensure hamburger menu is still hidden as per previous instruction */
+  .hamburger-menu {
+      display: none !important;
+  }
+
+  /* Ensure the mobile menu wrapper is still hidden */
+  .nav-wrapper {
+      display: none !important;
   }
 }
 
