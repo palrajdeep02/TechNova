@@ -1204,6 +1204,14 @@ footer {
         /* padding: 60px 0 0 0; */
     }
 
+  .service-page-content {
+    padding-top: 100px;
+  }
+  
+  .page-header {
+    padding-top: 140px;
+  }
+  
   .hero {
     min-height: 60vh; /* Your existing rule */
     padding: var(--spacing-xl) var(--spacing-sm); /* Your existing rule */
