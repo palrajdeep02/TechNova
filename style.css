@@ -1205,6 +1205,10 @@ footer {
         /* padding: 60px 0 0 0; */
     }
 
+    .service-why-choose-us-section .feature-text p.text-large,
+    .service-approach-section .feature-text p.text-large {
+      text-align: center;
+    }
   .service-page-content {
     padding-top: 100px;
   }
@@ -1257,6 +1261,14 @@ footer {
       position: absolute !important; /* Explicitly ensure it's absolute, inheriting from global is fine too */
       left: 0 !important;
       top: 100% !important;
+
+    .text-large {
+      text-align: center;
+    }
+
+    .feature-text {
+      text-align: center;
+    }
   }
 
   
