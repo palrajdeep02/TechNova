@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // --- Theme Toggle Functionality ---
+    // --- Theme Toggle Functionality (UNCHANGED) ---
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
     const themeIcon = themeToggle.querySelector('i'); // Get the icon element inside the button
@@ -42,28 +42,89 @@ document.addEventListener('DOMContentLoaded', function() {
     setThemeOnLoad();
 
 
-    // --- Dropdown Menu Functionality ---
-    const dropdown = document.querySelector('.dropdown');
-    if (dropdown) { // Check if dropdown exists on the page
-        const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-        if (dropdownMenu) { // Check if dropdown menu exists
-            dropdown.addEventListener('mouseenter', function() {
-                dropdownMenu.style.display = 'block'; // Make it visible
-                setTimeout(() => {
-                    dropdownMenu.classList.add('show'); // Add 'show' class for CSS transition
-                }, 10); // Small delay to allow display property to apply before transition
-            });
+    // --- Dropdown Menu Functionality (REVISED FOR MOBILE TAP & DESKTOP HOVER) ---
+    const dropdownParents = document.querySelectorAll('.nav-links .dropdown'); // Select all <li> with class 'dropdown'
 
-            dropdown.addEventListener('mouseleave', function() {
-                dropdownMenu.classList.remove('show'); // Remove 'show' class
-                setTimeout(() => {
-                    dropdownMenu.style.display = 'none'; // Hide after transition
-                }, 300); // Match this with your CSS transition duration for .dropdown-menu
-            });
-        }
+    // Function to close all other open dropdowns (and reset 'tapped' state for mobile)
+    function closeAllDropdowns(excludeParent = null) {
+        dropdownParents.forEach(parent => {
+            if (parent !== excludeParent) {
+                parent.classList.remove('active');
+                parent.classList.remove('tapped'); // Remove tapped state for mobile
+            }
+        });
     }
 
-    // --- Active Navigation Link Highlighting ---
+    dropdownParents.forEach(parentLi => {
+        const dropdownLink = parentLi.querySelector('a'); // The <a> tag that acts as the toggle
+        const dropdownMenu = parentLi.querySelector('.dropdown-menu');
+
+        // Only proceed if both the link and the menu exist within the dropdown parent
+        if (dropdownLink && dropdownMenu) {
+
+            // Desktop Hover functionality
+            parentLi.addEventListener('mouseenter', function() {
+                // Only activate on desktop view (breakpoint 768px)
+                if (!window.matchMedia("(max-width: 768px)").matches) {
+                    closeAllDropdowns(parentLi); // Close others
+                    parentLi.classList.add('active'); // Add 'active' class to show dropdown
+                }
+            });
+
+            parentLi.addEventListener('mouseleave', function() {
+                // Only deactivate on desktop view
+                if (!window.matchMedia("(max-width: 768px)").matches) {
+                    parentLi.classList.remove('active'); // Remove 'active' class to hide dropdown
+                }
+            });
+
+            // Mobile Tap functionality
+            dropdownLink.addEventListener('click', function(event) {
+                const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+                if (isMobile) {
+                    // If dropdown is NOT active OR it's active but NOT yet "tapped" (first tap scenario)
+                    if (!parentLi.classList.contains('active')) {
+                        event.preventDefault(); // Prevent browser from navigating (important!)
+                        closeAllDropdowns(parentLi); // Close any other open dropdowns
+                        parentLi.classList.add('active'); // Open this dropdown
+                        parentLi.classList.add('tapped'); // Mark that it has been tapped once
+                    } else if (parentLi.classList.contains('tapped')) {
+                        // If it's already active AND was "tapped" (second tap scenario)
+                        // Allow the default navigation (the link will be followed)
+                        parentLi.classList.remove('tapped'); // Reset tapped state for next interaction
+                    } else {
+                        // This case handles an active dropdown that wasn't "tapped" (e.g., opened by desktop and then resized)
+                        // Treat it as a first tap on mobile to open/reopen.
+                        event.preventDefault();
+                        closeAllDropdowns(parentLi);
+                        parentLi.classList.add('active');
+                        parentLi.classList.add('tapped');
+                    }
+                }
+                // For desktop clicks (not hover), the link will follow default behavior (go to href)
+                // This means clicking "Services" on desktop without hovering first will go to services.html
+            });
+        }
+    });
+
+    // Close dropdowns when clicking anywhere else on the document
+    document.addEventListener('click', function(event) {
+        // If the click is not inside any dropdown parent element
+        if (!event.target.closest('.nav-links .dropdown')) {
+            closeAllDropdowns();
+        }
+    });
+
+    // Close dropdowns on window resize, especially when switching from mobile to desktop view
+    window.addEventListener('resize', function() {
+        if (!window.matchMedia("(max-width: 768px)").matches) {
+            closeAllDropdowns(); // Close all dropdowns if in desktop view
+        }
+    });
+
+
+    // --- Active Navigation Link Highlighting (UNCHANGED) ---
     const currentPath = window.location.pathname; // Get the current URL path
     const navLinks = document.querySelectorAll('.nav-links a'); // Get all navigation links
 
