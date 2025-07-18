@@ -174,7 +174,14 @@ a:hover {
   height: 48px;
   transition: all var(--transition-smooth);
   animation: navbarFloat 4s ease-in-out infinite;
+  transition: transform 0.3s ease-in-out, background var(--transition-smooth);
 }
+
+.navbar-hidden {
+  transform: translateY(-10vh); /* Moves the navbar completely out of view upwards */
+}
+
+
 
 /* ================================================================= */
 /* === THEME TOGGLE BUTTON STYLES === */
@@ -1187,6 +1194,16 @@ footer {
     text-align: left !important; /* Revert text alignment for horizontal links */
   }
 
+  body {
+        /* This padding will override the default for mobile devices */
+        padding-top: 80px; /* Example: 60px for mobile top padding */
+        padding-right: 0;
+        padding-bottom: 0;
+        padding-left: 0;
+        /* Or use the shorthand: */
+        /* padding: 60px 0 0 0; */
+    }
+
   .hero {
     min-height: 60vh; /* Your existing rule */
     padding: var(--spacing-xl) var(--spacing-sm); /* Your existing rule */
@@ -1214,7 +1231,6 @@ footer {
 
   /* NEW: Revert dropdown menu behavior to desktop-like (absolute positioning on hover) */
   .dropdown-menu {
-      position: absolute !important; /* Revert to absolute positioning */
       top: 100% !important; /* Position below parent link */
       left: 0 !important; /* Align to the left of parent link */
       width: auto !important; /* Revert width to fit content */
@@ -1229,7 +1245,12 @@ footer {
       transform: translateY(10px) !important;
       transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease !important;
       z-index: 100; /* Ensure it's above other content */
+      position: absolute !important; /* Explicitly ensure it's absolute, inheriting from global is fine too */
+      left: 0 !important;
+      top: 100% !important;
   }
+
+  
 
   /* Ensure dropdown opens on hover for desktop-like behavior */
   .nav-links li.dropdown:hover .dropdown-menu {
