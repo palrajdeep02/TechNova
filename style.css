@@ -1620,7 +1620,7 @@ body.dark .service-block-link:hover .service-icon-wrapper {
     gap: var(--spacing-xl);
     align-items: center;
     text-align: center; /* Default for mobile */
-    max-width: 980px; /* Standard content width */
+    max-width: 1100px; /* Standard content width */
     margin: 0 auto;
     padding: 0 var(--spacing-md); /* Consistent inner padding */
 }
@@ -1628,18 +1628,14 @@ body.dark .service-block-link:hover .service-icon-wrapper {
 @media (min-width: 768px) {
     .about-story-section .feature-content-wrapper {
         grid-template-columns: 1fr 1fr; /* Two columns on larger screens */
-        text-align: left; /* Text aligns left in columns */
+        text-align: left(--spacing-xxxl); /* Text aligns left in columns */
     }
-    /* You can add .reverse-order here if you want to alternate image/text sides */
-    /* .about-story-section .feature-content-wrapper.reverse-order {
+    
+    .feature-content-wrapper.reverse-order {
         grid-template-areas: "image text";
     }
-    .about-story-section .feature-content-wrapper.reverse-order .feature-text {
-        grid-area: text;
-    }
-    .about-story-section .feature-content-wrapper.reverse-order .feature-image {
-        grid-area: image;
-    } */
+    .feature-content-wrapper .feature-text { grid-area: text; }
+    .feature-content-wrapper .feature-image { grid-area: image; }
 }
 
 .about-story-section .feature-text h2 {
@@ -2198,3 +2194,314 @@ body.dark .social-links-contact a {
         padding: var(--spacing-md);
     }
 }
+
+
+
+
+/* ================================================================= */
+/* === SERVICE SUB-PAGES (e.g., service-cyber.html, service-it.html) === */
+/* ================================================================= */
+
+/* Main content area wrapper for all service sub-pages */
+.service-page-content {
+    background-color: var(--bg-color); /* Ensures page background covers entire content area */
+    transition: background-color var(--transition-smooth); /* Smooth theme toggle */
+}
+
+/* ------------------------------------ */
+/* Service Hero Section: Introduction to the specific service */
+/* ------------------------------------ */
+.service-hero-section {
+    padding: var(--spacing-xxl) var(--spacing-md); /* Consistent vertical & horizontal padding for the section itself */
+    background: linear-gradient(to right, var(--bg-secondary) 50%, var(--bg-color) 50%);
+    display: flex;
+    align-items: center;
+    overflow: hidden; /* Helps contain any potential overflow from child elements */
+    transition: background var(--transition-smooth); /* Smooth theme toggle */
+}
+
+.service-hero-section .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Stacks columns on mobile */
+    gap: var(--spacing-xl); /* Increased gap between text and image on mobile/stacked */
+    align-items: center;
+    max-width: 1100px; /* Controls overall content width */
+    margin: 0 auto;
+    padding: 0; /* Remove internal padding as section handles it */
+    text-align: center; /* Centers content on mobile */
+}
+
+@media (min-width: 768px) {
+    .service-hero-section .hero-grid {
+        grid-template-columns: 1.2fr 1fr; /* Content slightly wider than image on larger screens */
+        gap: var(--spacing-xxl); /* More space between text and image on larger screens */
+        text-align: left; /* Aligns text left on larger screens */
+    }
+}
+
+.service-hero-section .hero-content {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: inherit;
+    padding: 0;
+}
+
+.service-hero-section .hero-content h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    margin-bottom: var(--spacing-lg); /* Slightly more space below heading */
+    line-height: 1.1;
+    color: var(--text-color);
+    word-break: break-word;
+    hyphens: auto;
+    transition: color var(--transition-fast);
+}
+
+.service-hero-section .hero-content p.text-large {
+    font-size: 19px;
+    margin-bottom: var(--spacing-xl); /* More space below large paragraph */
+    color: var(--text-secondary);
+    word-break: break-word;
+    hyphens: auto;
+    transition: color var(--transition-fast);
+}
+
+/* Refined Image Styling for Hero Section */
+.service-hero-section .hero-image {
+    /* Ensure the image container itself is well-behaved */
+    display: flex; /* Use flexbox to center image if it's smaller than container */
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Important: Clip image if it tries to go beyond bounds */
+    border-radius: var(--radius-xl); /* Apply border-radius to the container too for consistency */
+    box-shadow: var(--shadow-elevated); /* Apply initial shadow to container */
+    transition: box-shadow var(--transition-smooth); /* Smooth shadow transition */
+}
+
+.service-hero-section .hero-image img {
+    max-width: 100%; /* Ensures image never overflows its parent */
+    height: auto; /* Maintains aspect ratio */
+    display: block; /* Removes extra space below image */
+    border-radius: var(--radius-xl); /* Consistent rounded corners */
+    /* Removed individual box-shadow here as it's on the parent container now for a 'unified block' feel */
+    object-fit: cover; /* This ensures the image covers the area, cropping if needed, maintaining aspect ratio */
+    transition: transform var(--transition-smooth); /* Smooth hover effect */
+    /* Added a very subtle inner border for definition, only visible on light backgrounds */
+    border: 1px solid rgba(var(--primary-rgb), 0.1); /* Subtle border matching primary color */
+}
+
+.service-hero-section .hero-image img:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+
+/* ------------------------------------ */
+/* NEW: Why Choose TechNova Section (reusing feature-content-wrapper) */
+/* ------------------------------------ */
+.service-why-choose-us-section {
+    padding: var(--spacing-xxl) var(--spacing-md);
+    background-color: var(--bg-secondary);
+    transition: background-color var(--transition-smooth);
+}
+
+.service-why-choose-us-section .feature-image,
+.service-approach-section .feature-image {
+    /* Ensure the image container itself is well-behaved */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: var(--radius-xl); /* Apply border-radius to the container */
+    box-shadow: var(--shadow-elevated); /* Apply initial shadow to container */
+    transition: box-shadow var(--transition-smooth);
+}
+
+.service-why-choose-us-section .feature-image img,
+.service-approach-section .feature-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-xl);
+    /* Removed individual box-shadow here as it's on the parent container now */
+    object-fit: cover; /* Crucial for maintaining aspect ratio while filling space */
+    transition: transform var(--transition-smooth);
+    border: 1px solid rgba(var(--primary-rgb), 0.1); /* Subtle border for definition */
+}
+
+.service-why-choose-us-section .feature-image img:hover,
+.service-approach-section .feature-image img:hover {
+    transform: scale(1.01); /* Subtle zoom on hover */
+}
+
+.service-why-choose-us-section .feature-image:hover,
+.service-approach-section .feature-image:hover {
+    box-shadow: var(--shadow-hover); /* Stronger shadow on hover */
+}
+
+.service-why-choose-us-section .feature-text h2,
+.service-approach-section .feature-text h2 { /* Apply to both similar sections */
+    font-size: clamp(32px, 4vw, 48px);
+    margin-bottom: var(--spacing-md);
+    color: var(--text-color);
+    text-align: center;
+    transition: color var(--transition-fast);
+}
+
+@media (min-width: 768px) {
+    .service-why-choose-us-section .feature-text h2,
+    .service-approach-section .feature-text h2 {
+        text-align: left;
+    }
+}
+
+.service-why-choose-us-section .feature-text p.text-large,
+.service-approach-section .feature-text p.text-large {
+    margin-bottom: var(--spacing-lg); /* Space before list or more content */
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+}
+
+.service-why-choose-us-section .feature-text ul,
+.service-approach-section .feature-text ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-lg); /* Space after list */
+}
+
+.service-why-choose-us-section .feature-text ul li,
+.service-approach-section .feature-text ul li {
+    font-size: 17px;
+    color: var(--text-color);
+    margin-bottom: var(--spacing-xs); /* Space between list items */
+    position: relative;
+    padding-left: 25px;
+    transition: color var(--transition-fast);
+}
+
+/* ------------------------------------ */
+/* Feature Section (e.g., Why it matters) */
+/* ------------------------------------ */
+.service-feature-section {
+    padding: var(--spacing-xxl) var(--spacing-md); /* Consistent section padding */
+    /* Background set in HTML with .bg-secondary-section class if alternating */
+    transition: background-color var(--transition-smooth);
+}
+
+.feature-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg); /* Consistent gap between cards */
+}
+
+.feature-card {
+    padding: var(--spacing-xl); /* Padding inside cards */
+    /* ... rest of the styles ... */
+}
+
+.feature-card .icon-large {
+    margin-bottom: var(--spacing-md); /* Space below icons */
+    /* ... rest of the styles ... */
+}
+
+.feature-card h3 {
+    margin-bottom: var(--spacing-xs); /* Space below card headings */
+    /* ... rest of the styles ... */
+}
+
+
+/* ------------------------------------ */
+/* Service Offerings Section: Detailed list of services */
+/* ------------------------------------ */
+.service-offerings-section {
+    padding: var(--spacing-xxl) var(--spacing-md); /* Consistent section padding */
+    /* Background set in HTML with .bg-secondary-section class if alternating */
+    transition: background-color var(--transition-smooth);
+}
+
+.offerings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg); /* Consistent gap between offering items */
+}
+
+.offering-item {
+    padding: var(--spacing-xl); /* Padding inside offering items */
+    /* ... rest of the styles ... */
+}
+
+.offering-icon-wrapper {
+    margin-bottom: var(--spacing-md); /* Space below icon wrapper */
+    /* ... rest of the styles ... */
+}
+
+.offering-item h3 {
+    margin-bottom: var(--spacing-xs); /* Space below offering item headings */
+    /* ... rest of the styles ... */
+}
+
+
+/* ------------------------------------ */
+/* Service Approach Section: How TechNova works */
+/* ------------------------------------ */
+.service-approach-section {
+    padding: var(--spacing-xxl) var(--spacing-md); /* Consistent section padding */
+    /* Background set in HTML with .bg-secondary-section class if alternating */
+    transition: background-color var(--transition-smooth);
+}
+
+/* ------------------------------------ */
+/* Call to Action Section (Reused global CTA) */
+/* ------------------------------------ */
+.cta-section {
+    padding: var(--spacing-xxl) var(--spacing-md); /* Consistent section padding */
+    /* Background set in HTML with .bg-secondary-section class if alternating */
+    transition: background-color var(--transition-smooth);
+}
+
+/* Ensure global classes like .text-center, .mb-xxl (margin-bottom-xxl) are defined and used.
+   .mb-xxl should be large enough to provide separation for leading paragraphs.
+*/
+.mb-xxl {
+    margin-bottom: var(--spacing-xxl); /* Example: If not already defined */
+}
+
+/* ------------------------------------ */
+/* Dark Mode Adjustments for Service Sub-Pages (unchanged from previous) */
+/* ------------------------------------ */
+body.dark .service-hero-section .hero-image img,
+body.dark .service-why-choose-us-section .feature-image img,
+body.dark .service-approach-section .feature-image img {
+    background: linear-gradient(to right, var(--bg-secondary-dark) 50%, var(--bg-color-dark) 50%);
+}
+
+body.dark .service-why-choose-us-section,
+body.dark .service-feature-section,
+body.dark .service-approach-section,
+body.dark .cta-section {
+    background-color: var(--bg-secondary-dark);
+}
+
+body.dark .feature-card {
+    background-color: var(--card-bg-dark);
+    border-color: var(--border-color-dark);
+}
+
+body.dark .offering-item {
+    background-color: var(--card-bg-dark);
+    border-color: var(--border-color-dark);
+}
+
+body.dark .offering-icon-wrapper {
+    background-color: var(--card-bg-dark);
+}
+
+body.dark .offering-item:hover .offering-icon-wrapper {
+    background-color: var(--primary-color);
+}
+
+body.dark .service-approach-section .feature-text ul li::before {
+    color: var(--primary-color);
+}
+

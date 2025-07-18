@@ -1,56 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cyber Security | Technova</title>
-  <link rel="stylesheet" href="../style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cyber Security | TechNova</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body class="light">
-  <header class="navbar">
-    <div class="logo">TechNova</div>
-    <ul class="nav-links">
-      <li><a href="../index.html">Home</a></li>
-      <li class="dropdown">
-        <a href="#">Services ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="service-it.html">IT Consulting</a></li>
-          <li><a href="service-software.html">Software Development</a></li>
-          <li><a href="service-data.html">Data Analytics</a></li>
-          <li><a href="service-dbms.html">DBMS</a></li>
-          <li><a href="service-cyber.html">Cyber Security</a></li>
-          <li><a href="service-digital.html">Digital Marketing</a></li>
-          <li><a href="service-web.html">Website Designing</a></li>
-          <li><a href="service-app.html">App Development</a></li>
+    <header class="navbar">
+        <div class="logo">TechNova</div>
+        <ul class="nav-links">
+            <li><a href="../index.html">Home</a></li>
+            <li class="dropdown">
+                <a href="../services.html">Services ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="service-it.html">IT Consulting</a></li>
+                    <li><a href="service-software.html">Software Development</a></li>
+                    <li><a href="service-data.html">Data Analytics</a></li>
+                    <li><a href="service-dbms.html">DBMS</a></li>
+                    <li><a href="service-cyber.html" class="active">Cyber Security</a></li>
+                    <li><a href="service-digital.html">Digital Marketing</a></li>
+                    <li><a href="service-web.html">Website Designing</a></li>
+                    <li><a href="service-app.html">App Development</a></li>
+                </ul>
+            </li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+            <li><a href="../blog.html">Blog</a></li>
         </ul>
-      </li>
-      <li><a href="../about.html">About</a></li>
-      <li><a href="../contact.html">Contact</a></li>
-      <li><a href="../blog.html">Blog</a></li>
-    </ul>
-    <button id="theme-toggle">🌓</button>
-  </header>
+        <button id="theme-toggle">🌓</button>
+    </header>
 
-  <section class="service-page">
-    <div class="service-details">
-      <h1>Cyber Security</h1>
-      <p>Explore our comprehensive solutions in cyber security tailored to your business needs.</p>
-      <h2>Key Offerings</h2>
-      <ul>
-        <li>Consultation and strategic planning</li>
-        <li>Implementation of tailored solutions</li>
-        <li>Ongoing support and optimization</li>
-      </ul>
-      <div class="cta-box">
-        <a class="btn" href="../contact.html">Get Started</a>
-      </div>
-    </div>
-  </section>
+    <main class="service-page-content">
+        <section class="service-hero-section">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <h1>Fortify Your Digital Frontier with Cyber Security</h1>
+                    <p class="text-large">
+                        In an ever-evolving threat landscape, robust cybersecurity is not just a necessity—it's a foundation for trust and business continuity. TechNova empowers your organization with comprehensive, proactive security solutions.
+                    </p>
+                    <a class="btn btn-primary" href="../contact.html">Secure Your Business Now</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cyber Security Solutions" />
+                </div>
+            </div>
+        </section>
 
-  <footer>
-    <p>&copy; 2025 Technova. All rights reserved.</p>
-  </footer>
+        <section class="service-why-choose-us-section bg-secondary-section">
+            <div class="container feature-content-wrapper reverse-order">
+                <div class="feature-text">
+                    <h2>Why Choose TechNova for Your Cyber Defense?</h2>
+                    <p class="text-large">
+                        Our approach to cybersecurity goes beyond simple protection. We integrate advanced threat intelligence with a deep understanding of your business needs to build truly resilient systems.
+                    </p>
+                    <ul>
+                        <li><strong>Proactive Threat Hunting:</strong> We actively seek out and neutralize threats before they can impact your operations.</li>
+                        <li><strong>Tailored Solutions:</strong> Our strategies are custom-built to fit your unique infrastructure and risk profile, not one-size-fits-all.</li>
+                        <li><strong>Expert Team:</strong> Leverage our certified cybersecurity specialists with extensive experience across various industries.</li>
+                        <li><strong>24/7 Vigilance:</strong> Benefit from continuous monitoring and rapid incident response, ensuring always-on protection.</li>
+                    </ul>
+                    <a href="../about.html" class="btn btn-secondary">Learn More About Us</a>
+                </div>
+                <div class="feature-image">
+                    <img src="https://images.unsplash.com/photo-1579567954930-b3b3a7a97268?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cybersecurity Experts Collaboration" />
+                </div>
+            </div>
+        </section>
 
-  <script src="../script.js"></script>
+        <section class="service-feature-section"> <div class="container">
+                <h2 class="text-center">Why Robust Cyber Security is Non-Negotiable</h2>
+                <p class="text-center text-large mb-xxl">
+                    Protecting your digital assets is paramount. We help you navigate complex threats and safeguard your operations.
+                </p>
+                <div class="feature-card-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-lock icon-large primary-color"></i>
+                        <h3>Data Protection</h3>
+                        <p>Safeguard sensitive information from breaches and unauthorized access, maintaining data integrity and confidentiality.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-gavel icon-large primary-color"></i>
+                        <h3>Regulatory Compliance</h3>
+                        <p>Ensure adherence to industry-specific regulations (e.g., GDPR, HIPAA) to avoid penalties and maintain reputation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt icon-large primary-color"></i>
+                        <h3>Threat Resilience</h3>
+                        <p>Build systems that can withstand and quickly recover from cyberattacks, minimizing downtime and business disruption.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-handshake icon-large primary-color"></i>
+                        <h3>Client Trust</h3>
+                        <p>Demonstrate a commitment to security, fostering greater trust and confidence among your customers and partners.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="service-offerings-section bg-secondary-section"> <div class="container">
+                <h2 class="text-center">Our Comprehensive Cyber Security Offerings</h2>
+                <p class="text-center text-large mb-xxl">
+                    TechNova provides end-to-end security solutions, designed to protect every layer of your enterprise.
+                </p>
+                <div class="offerings-grid">
+                    <div class="offering-item">
+                        <div class="offering-icon-wrapper">
+                            <i class="fas fa-brain offering-icon"></i>
+                        </div>
+                        <h3>Security Strategy & Advisory</h3>
+                        <p>Develop tailored security roadmaps, risk assessments, governance frameworks, and compliance strategies.</p>
+                    </div>
+                    <div class="offering-item">
+                        <div class="offering-icon-wrapper">
+                            <i class="fas fa-cloud offering-icon"></i>
+                        </div>
+                        <h3>Cloud Security</h3>
+                        <p>Secure your cloud environments (AWS, Azure, GCP) with robust configurations, access controls, and data protection.</p>
+                    </div>
+                    <div class="offering-item">
+                        <div class="offering-icon-wrapper">
+                            <i class="fas fa-desktop offering-icon"></i>
+                        </div>
+                        <h3>Endpoint Protection</h3>
+                        <p>Defend devices, from laptops to mobile phones, against malware, ransomware, and advanced persistent threats.</p>
+                    </div>
+                    <div class="offering-item">
+                        <div class="offering-icon-wrapper">
+                            <i class="fas fa-eye offering-icon"></i>
+                        </div>
+                        <h3>Threat Detection & Response (MDR)</h3>
+                        <p>Proactive monitoring, incident response planning, and rapid containment of security breaches with Managed Detection & Response.</p>
+                    </div>
+                    <div class="offering-item">
+                        <div class="offering-icon-wrapper">
+                            <i class="fas fa-user-shield offering-icon"></i>
+                        </div>
+                        <h3>Identity & Access Management (IAM)</h3>
+                        <p>Implement secure authentication (MFA), authorization, and user provisioning to control access to critical resources.</p>
+                    </div>
+                    <div class="offering-item">
+                        <div class="offering-icon-wrapper">
+                            <i class="fas fa-bug offering-icon"></i>
+                        </div>
+                        <h3>Vulnerability Management & Pen Testing</h3>
+                        <p>Identify and remediate weaknesses through continuous vulnerability scanning and ethical penetration testing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="service-approach-section"> <div class="container feature-content-wrapper reverse-order">
+                <div class="feature-text">
+                    <h2>Our Proactive, Layered Approach</h2>
+                    <p class="text-large">
+                        We believe in a multi-faceted defense strategy. Our methodology combines advanced technology with human expertise to create resilient security postures.
+                    </p>
+                    <ul>
+                        <li><strong>Assessment & Planning:</strong> Thorough analysis of your current security landscape and threat modeling.</li>
+                        <li><strong>Implementation & Integration:</strong> Deploying best-in-class security tools and integrating them seamlessly.</li>
+                        <li><strong>Monitoring & Response:</strong> 24/7 surveillance and rapid incident handling to minimize impact.</li>
+                        <li><strong>Training & Awareness:</strong> Educating your team to be your first line of defense.</li>
+                    </ul>
+                </div>
+                <div class="feature-image">
+                    <img src="https://images.unsplash.com/photo-1581093581729-e8549887756e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Security Approach Diagram" />
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section bg-secondary-section"> <div class="container text-center">
+                <h2>Ready to Strengthen Your Security Posture?</h2>
+                <p class="text-large">Don't wait for a breach. Partner with TechNova for unparalleled cyber defense.</p>
+                <a href="../contact.html" class="btn">Get a Security Consultation</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TechNova. All rights reserved.</p>
+    </footer>
+
+    <script src="../script.js"></script>
 </body>
 </html>

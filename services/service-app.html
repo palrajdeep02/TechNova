@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>App Development | Technova</title>
+  <title>App Development | TechNova</title>
   <link rel="stylesheet" href="../style.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body class="light">
   <header class="navbar">
@@ -12,7 +14,7 @@
     <ul class="nav-links">
       <li><a href="../index.html">Home</a></li>
       <li class="dropdown">
-        <a href="#">Services ▾</a>
+        <a href="../services.html">Services ▾</a>
         <ul class="dropdown-menu">
           <li><a href="service-it.html">IT Consulting</a></li>
           <li><a href="service-software.html">Software Development</a></li>
@@ -21,7 +23,7 @@
           <li><a href="service-cyber.html">Cyber Security</a></li>
           <li><a href="service-digital.html">Digital Marketing</a></li>
           <li><a href="service-web.html">Website Designing</a></li>
-          <li><a href="service-app.html">App Development</a></li>
+          <li><a href="service-app.html" class="active">App Development</a></li> <!-- Active link for current page -->
         </ul>
       </li>
       <li><a href="../about.html">About</a></li>
@@ -31,24 +33,168 @@
     <button id="theme-toggle">🌓</button>
   </header>
 
-  <section class="service-page">
-    <div class="service-details">
-      <h1>App Development</h1>
-      <p>Explore our comprehensive solutions in app development tailored to your business needs.</p>
-      <h2>Key Offerings</h2>
-      <ul>
-        <li>Consultation and strategic planning</li>
-        <li>Implementation of tailored solutions</li>
-        <li>Ongoing support and optimization</li>
-      </ul>
-      <div class="cta-box">
-        <a class="btn" href="../contact.html">Get Started</a>
+  <main class="service-page-content">
+    <!-- Hero Section for App Development -->
+    <section class="service-hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <h1>Transform Ideas into Engaging Mobile Experiences</h1>
+          <p class="text-large">
+            From concept to launch, TechNova specializes in crafting intuitive, high-performance mobile applications that captivate users and drive business growth.
+          </p>
+          <a class="btn btn-primary" href="../contact.html">Start Your App Project</a>
+        </div>
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1512941937669-cd73e2f3192c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Mobile App Development" />
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- Why Choose TechNova for App Development -->
+    <section class="service-why-choose-us-section bg-secondary-section">
+        <div class="container feature-content-wrapper reverse-order">
+            <div class="feature-text">
+                <h2>Why TechNova for Your Next Mobile App?</h2>
+                <p class="text-large">
+                    We combine cutting-edge technology with user-centric design principles to deliver mobile applications that stand out and provide real value.
+                </p>
+                <ul>
+                    <li><strong>User-Centric Design:</strong> Apps crafted for exceptional user experience and intuitive navigation.</li>
+                    <li><strong>Cross-Platform Expertise:</strong> Reach broader audiences with efficient, high-performing cross-platform solutions.</li>
+                    <li><strong>Robust Backend Integration:</strong> Seamless connectivity and data management for powerful app functionality.</li>
+                    <li><strong>Post-Launch Support:</strong> Comprehensive maintenance, updates, and optimization to ensure long-term success.</li>
+                </ul>
+                <a href="../about.html" class="btn btn-secondary">Meet Our App Team</a>
+            </div>
+            <div class="feature-image">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="App Development Collaboration" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Why App Development Matters Section -->
+    <section class="service-feature-section">
+      <div class="container">
+        <h2 class="text-center">The Impact of a Powerful Mobile App</h2>
+        <p class="text-center text-large mb-xxl">
+          A well-designed mobile application can be a game-changer, connecting you with your audience and streamlining operations.
+        </p>
+
+        <div class="feature-card-grid">
+          <div class="feature-card">
+            <i class="fas fa-users icon-large primary-color"></i>
+            <h3>Wider Reach</h3>
+            <p>Connect with customers directly on their preferred devices, expanding your market presence.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-hand-pointer icon-large primary-color"></i>
+            <h3>Enhanced Engagement</h3>
+            <p>Foster loyalty and interaction through personalized experiences and push notifications.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-sync-alt icon-large primary-color"></i>
+            <h3>Streamlined Operations</h3>
+            <p>Automate processes, improve internal communication, and boost productivity for your team.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fas fa-chart-line icon-large primary-color"></i>
+            <h3>Competitive Edge</h3>
+            <p>Stand out in your industry with innovative features and a superior mobile presence.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Comprehensive App Development Offerings Section -->
+    <section class="service-offerings-section bg-secondary-section">
+      <div class="container">
+        <h2 class="text-center">Our Comprehensive App Development Services</h2>
+        <p class="text-center text-large mb-xxl">
+          TechNova offers a full spectrum of services to bring your mobile application vision to life.
+        </p>
+
+        <div class="offerings-grid">
+          <div class="offering-item">
+            <div class="offering-icon-wrapper">
+                <i class="fab fa-apple offering-icon"></i>
+            </div>
+            <h3>Native iOS Development</h3>
+            <p>Building high-performance, intuitive applications specifically for Apple's ecosystem using Swift/Objective-C.</p>
+          </div>
+          <div class="offering-item">
+            <div class="offering-icon-wrapper">
+                <i class="fab fa-android offering-icon"></i>
+            </div>
+            <h3>Native Android Development</h3>
+            <p>Crafting robust and scalable Android applications tailored for the diverse Android device landscape using Kotlin/Java.</p>
+          </div>
+          <div class="offering-item">
+            <div class="offering-icon-wrapper">
+                <i class="fas fa-mobile-alt offering-icon"></i>
+            </div>
+            <h3>Cross-Platform Development</h3>
+            <p>Efficiently developing apps for both iOS and Android from a single codebase using frameworks like React Native or Flutter.</p>
+          </div>
+          <div class="offering-item">
+            <div class="offering-icon-wrapper">
+                <i class="fas fa-palette offering-icon"></i>
+            </div>
+            <h3>UI/UX Design for Apps</h3>
+            <p>Creating stunning, user-friendly interfaces and seamless user experiences that engage and delight your audience.</p>
+          </div>
+          <div class="offering-item">
+            <div class="offering-icon-wrapper">
+                <i class="fas fa-server offering-icon"></i>
+            </div>
+            <h3>Backend & API Integration</h3>
+            <p>Developing robust server-side logic and integrating essential APIs to power your app's functionality and data flow.</p>
+          </div>
+          <div class="offering-item">
+            <div class="offering-icon-wrapper">
+                <i class="fas fa-bug offering-icon"></i>
+            </div>
+            <h3>App Testing & QA</h3>
+            <p>Rigorous testing across devices and scenarios to ensure your app is stable, secure, and performs flawlessly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our App Development Process Section -->
+    <section class="service-approach-section">
+      <div class="container feature-content-wrapper">
+        <div class="feature-text">
+          <h2>Our Streamlined App Development Process</h2>
+          <p class="text-large">
+            We follow an agile, transparent process to ensure your app is delivered on time, within budget, and to your exact specifications.
+          </p>
+          <ul>
+            <li><strong>Discovery & Strategy:</strong> Defining your app's vision, features, and target audience.</li>
+            <li><strong>UI/UX Design:</strong> Creating wireframes, mockups, and prototypes for intuitive user flows.</li>
+            <li><strong>Development & Iteration:</strong> Building the app with agile sprints, regular feedback, and continuous integration.</li>
+            <li><strong>Testing & Quality Assurance:</strong> Thorough testing to ensure performance, security, and bug-free operation.</li>
+            <li><strong>Deployment & Launch:</strong> Guiding you through app store submissions and successful launch.</li>
+            <li><strong>Maintenance & Support:</strong> Ongoing updates, performance monitoring, and feature enhancements post-launch.</li>
+          </ul>
+        </div>
+        <div class="feature-image">
+          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="App Development Process" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section bg-secondary-section">
+      <div class="container text-center">
+        <h2>Ready to Launch Your Next Big Idea?</h2>
+        <p class="text-large">Let's discuss how TechNova can bring your innovative mobile application to life.</p>
+        <a href="../contact.html" class="btn">Get a Free App Consultation</a>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <p>&copy; 2025 Technova. All rights reserved.</p>
+    <p>&copy; 2025 TechNova. All rights reserved.</p>
   </footer>
 
   <script src="../script.js"></script>
