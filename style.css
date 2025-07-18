@@ -174,6 +174,49 @@ a:hover {
   animation: navbarFloat 4s ease-in-out infinite;
 }
 
+/* ================================================================= */
+/* === THEME TOGGLE BUTTON STYLES === */
+/* ================================================================= */
+#theme-toggle {
+    background-color: var(--secondary-bg); /* Subtle background */
+    border: 1px solid var(--border-color); /* Light border */
+    border-radius: 50%; /* Makes it circular */
+    width: 44px; /* Fixed width */
+    height: 44px; /* Fixed height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 20px; /* Icon size */
+    color: var(--text-secondary); /* Icon color */
+    outline: none; /* Remove outline on focus */
+    transition: background-color var(--transition-smooth), color var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth), transform var(--transition-smooth);
+    margin-left: var(--spacing-lg); /* Space from nav links */
+    flex-shrink: 0; /* Prevent it from shrinking on smaller screens */
+}
+
+#theme-toggle:hover {
+    background-color: var(--primary-color); /* Primary color on hover */
+    color: var(--button-text-color); /* White text on hover */
+    border-color: var(--primary-color); /* Match border color */
+    box-shadow: var(--shadow-subtle); /* Subtle shadow on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Dark mode specific styles for the toggle button */
+body.dark #theme-toggle {
+    background-color: var(--secondary-bg-dark); /* Darker background in dark mode */
+    border-color: var(--border-color-dark);
+    color: var(--text-secondary-dark); /* Lighter icon color in dark mode */
+}
+
+body.dark #theme-toggle:hover {
+    background-color: var(--primary-color-dark); /* Dark primary color on hover */
+    color: var(--button-text-color-dark); /* White text on hover in dark mode */
+    border-color: var(--primary-color-dark);
+    box-shadow: var(--shadow-subtle-dark);
+}
+
 .logo {
   font-size: 20px;
   font-weight: 600;
