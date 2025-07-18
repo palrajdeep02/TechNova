@@ -1196,7 +1196,7 @@ footer {
 
   body {
         /* This padding will override the default for mobile devices */
-        padding-top: 80px; /* Example: 60px for mobile top padding */
+        padding-top: 100px; /* Example: 60px for mobile top padding */
         padding-right: 0;
         padding-bottom: 0;
         padding-left: 0;
