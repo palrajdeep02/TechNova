@@ -282,11 +282,7 @@ body.dark .nav-links li a:hover {
   color: var(--nav-link-hover-color-dark); /* Apply the dark mode specific hover color */
 }
 
-.nav-links li a:hover::after,
-.nav-links li a.active::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
-}
+
 
 /* Dropdown Menu Enhancements */
 .dropdown-menu {
@@ -2153,6 +2149,8 @@ body.dark .team-member-card .social-icons a:hover {
     flex-direction: column;
 }
 
+
+
 .contact-form-card h2,
 .contact-info-card h2 {
     font-size: 32px;
@@ -2245,7 +2243,7 @@ body.dark .team-member-card .social-icons a:hover {
 
 .contact-info-card {
     color: var(--primary-hover);
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .text-link:hover {
