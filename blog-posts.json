@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1",
+    "title": "The Future of AI in Digital Marketing",
+    "date": "July 15, 2025",
+    "author": "Soham Dutta",
+    "excerpt": "Artificial intelligence is rapidly transforming the digital marketing landscape, offering unprecedented opportunities for personalization and efficiency...",
+    "imageUrl": "https://www.dopstart.com/wp-content/uploads/2024/09/The-future-of-AI-in-digital-marketing.webp",
+    "link": "blog/post-ai-marketing.html"
+  },
+  {
+    "id": "2",
+    "title": "Cybersecurity Trends to Watch in 2025",
+    "date": "July 10, 2025",
+    "author": "Rajdeep Pal",
+    "excerpt": "As cyber threats evolve, staying ahead is crucial. We explore the top cybersecurity trends that will shape the digital defense strategies in the coming year...",
+    "imageUrl": "https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NzIyNzh8MHwxfHNlYXJjaHw3fHxjeWJlcnNlY3VyaXR5JTIwY29uY2VwdHxlbnwwfHx8fDE3MDY3MjI3Mjh8MA&ixlib=rb-4.0.3&q=80&w=400",
+    "link": "blog/post-cyber-trends.html"
+  },
+  {
+    "id": "3",
+    "title": "Unlocking Business Insights with Data Analytics",
+    "date": "July 05, 2025",
+    "author": "Auritree Debnath",
+    "excerpt": "Data is the new gold, but only if you can extract meaningful insights from it. Discover how data analytics can transform your decision-making processes...",
+    "imageUrl": "https://images.yourstory.com/cs/2/96eabe90392211eb93f18319e8c07a74/DATAANALYTICSfinal-1686237252944.png?mode=crop&crop=faces&ar=2%3A1&format=auto&w=1920&q=75",
+    "link": "blog/post-data-insights.html"
+  },
+  {
+    "id": "4",
+    "title": "Modern Web Design Principles for 2025",
+    "date": "June 28, 2025",
+    "author": "Indrajit Mistry",
+    "excerpt": "Stay ahead in the digital world with the latest web design trends. Learn about responsive design, minimalism, and user experience essentials...",
+    "imageUrl": "https://happyaddons.com/wp-content/uploads/2022/09/Web-Design-Principles_Lat-Update.png",
+    "link": "blog/post-web-design.html"
+  },
+  {
+    "id": "5",
+    "title": "Why Your Business Needs a Custom Mobile App",
+    "date": "June 20, 2025",
+    "author": "Rajdeep Pal",
+    "excerpt": "In today's mobile-first world, a custom app can be a game-changer for customer engagement and operational efficiency. Discover the benefits...",
+    "imageUrl": "https://www.appverticals.com/blog/wp-content/uploads/2021/08/8-reasonss.png",
+    "link": "blog/post-mobile-app.html"
+  }
+]
